@@ -17,6 +17,11 @@ const phonetic = computed(() => {
   return store.accent === 'uk' ? (word.value.uk || word.value.us) : (word.value.us || word.value.uk);
 });
 
+const cardProgress = computed(() => {
+  if (store.words.length === 0) return 0;
+  return ((store.progress.idx + 1) / store.words.length) * 100;
+});
+
 const front = computed(() => {
   if (!word.value) return { main: '—', sub: '' };
   const d = store.cardDisplay;
@@ -134,6 +139,10 @@ onBeforeUnmount(() => {
       <input type="checkbox" v-model="store.autoNext" @change="onAutoNextChange">
       <span>自动下一个</span>
     </label>
+  </div>
+
+  <div class="card-progress-bar">
+    <div class="card-progress-fill" :style="{ width: cardProgress + '%' }"></div>
   </div>
 
   <div class="card-wrap">

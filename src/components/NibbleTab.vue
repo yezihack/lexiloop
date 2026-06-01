@@ -109,8 +109,19 @@ function resetChunk() {
   fillBatch();
 }
 
+function setChunkSize(size) {
+  store.chunkSize = size;
+  store.persist();
+  fillBatch();
+}
+
 const totalLearned = computed(() => learnedSet.value.size);
 const allDone = computed(() => totalLearned.value >= store.words.length);
+
+const batchProgress = computed(() => {
+  if (store.chunkSize === 0) return 0;
+  return ((store.chunkSize - batch.value.length) / store.chunkSize) * 100;
+});
 
 onMounted(fillBatch);
 watch(orderedWords, fillBatch);
@@ -127,8 +138,23 @@ onBeforeUnmount(cancelSpeak);
       批量
       <input type="number" min="1" max="200" step="1" v-model.number="store.chunkSize" @change="store.persist()" />
     </label>
+    <div class="nibble-presets">
+      <button 
+        v-for="size in [12, 24, 48, 64]" 
+        :key="size"
+        class="preset-btn"
+        :class="{ active: store.chunkSize === size }"
+        @click="setChunkSize(size)"
+      >
+        {{ size }}
+      </button>
+    </div>
     <button class="speak-btn" @click="loadNext" :disabled="allDone">下一批</button>
     <button class="btn-text" @click="resetChunk">重置位置</button>
+  </div>
+
+  <div class="nibble-progress-bar">
+    <div class="nibble-progress-fill" :style="{ width: batchProgress + '%' }"></div>
   </div>
 
   <div v-if="!batch.length && !allDone" class="loading">本批已消灭，正在加载下一批…</div>

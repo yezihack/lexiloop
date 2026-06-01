@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>使用说明 - 词环 LexiLoop</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <style>
 :root {
   --accent: #3b3aa6;
@@ -52,11 +53,27 @@ a:hover { text-decoration: underline; }
   padding: 24px 16px;
   overflow-y: auto;
 }
+.sidebar .logo-link {
+  display: block;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+.sidebar .logo-link:hover {
+  opacity: 0.8;
+}
 .sidebar .logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 18px;
   font-weight: 700;
   color: var(--accent);
   margin-bottom: 4px;
+}
+.sidebar .logo-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
 }
 .sidebar .slogan {
   font-size: 12px;
@@ -156,6 +173,128 @@ a:hover { text-decoration: underline; }
   vertical-align: middle;
 }
 
+.github-banner {
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  color: #fff;
+  padding: 16px 24px;
+  border-radius: var(--radius);
+  margin: 32px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  box-shadow: 0 4px 12px rgba(59, 58, 166, 0.15);
+  transition: transform .2s, box-shadow .2s;
+}
+.github-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 58, 166, 0.25);
+}
+.github-banner-text {
+  flex: 1;
+}
+.github-banner-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.github-banner-desc {
+  font-size: 13px;
+  opacity: 0.9;
+}
+.github-banner-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background .2s;
+  white-space: nowrap;
+}
+.github-banner-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+}
+.github-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.support-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin: 32px 0;
+  text-align: center;
+}
+.support-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.support-card-desc {
+  font-size: 14px;
+  color: var(--text-2);
+  margin-bottom: 16px;
+}
+.support-card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+.support-card-btn:hover {
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+.github-ribbon {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  pointer-events: none;
+}
+.github-ribbon a {
+  position: absolute;
+  top: 42px;
+  right: -60px;
+  transform: rotate(45deg);
+  width: 280px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  color: #fff;
+  text-align: center;
+  padding: 8px 0;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  pointer-events: auto;
+  transition: background .2s, transform .2s;
+}
+.github-ribbon a:hover {
+  background: linear-gradient(135deg, #2e2d85, #32a896);
+  transform: rotate(45deg) scale(1.05);
+  text-decoration: none;
+}
+
 /* 移动端 */
 @media (max-width: 768px) {
   .sidebar {
@@ -169,13 +308,42 @@ a:hover { text-decoration: underline; }
   .sidebar nav a { padding: 6px 10px; font-size: 13px; }
   .layout { flex-direction: column; }
   .content { margin-left: 0; padding: 24px 16px 60px; }
+  .github-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 16px;
+  }
+  .github-banner-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .github-ribbon {
+    width: 150px;
+    height: 150px;
+  }
+  .github-ribbon a {
+    top: 32px;
+    right: -50px;
+    width: 200px;
+    font-size: 11px;
+    padding: 6px 0;
+  }
 }
 </style>
 </head>
 <body>
+<div class="github-ribbon">
+  <a href="https://github.com/yezihack/lexiloop/issues" target="_blank">🐛 反馈问题 / Issue</a>
+</div>
+
 <div class="layout">
   <aside class="sidebar">
-    <div class="logo">词环 LexiLoop <span class="version-badge">v1.0.0</span></div>
+    <a href="../" class="logo-link">
+      <div class="logo">
+        <img src="favicon.svg" alt="LexiLoop" class="logo-icon">
+        词环 LexiLoop <span class="version-badge">v1.0.0</span>
+      </div>
+    </a>
     <div class="slogan">循环背单词，轻盈不打扰</div>
     <nav>
       <a href="#intro">网站介绍</a>
@@ -199,8 +367,21 @@ a:hover { text-decoration: underline; }
 
     <p>词环是一个纯前端单词学习应用，无需注册、无需联网（首次加载后），数据保存在浏览器本地。它通过多种学习模式帮助你高效记忆英语词汇。</p>
 
+    <a href="https://github.com/yezihack/lexiloop" target="_blank" class="github-banner">
+      <div class="github-banner-text">
+        <div class="github-banner-title">⭐ 喜欢词环吗？</div>
+        <div class="github-banner-desc">在 GitHub 上给我们一个 Star，支持开源项目持续更新</div>
+      </div>
+      <div class="github-banner-btn">
+        <svg class="github-icon" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        Star on GitHub
+      </div>
+    </a>
+
     <div class="img-placeholder">
-      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601093432.png" alt="首页显示">        
+      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601163435.png" alt="首页显示">     
     </div>
     
     
@@ -230,7 +411,7 @@ a:hover { text-decoration: underline; }
       <li>支持开始洗脑模式</li>
     </ul>
     <div class="img-placeholder">
-      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601094041.png" alt="卡片模式">        
+      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601163519.png" alt="卡片模式">    
     </div>
 
     <h2 id="nibble">蚕食模式</h2>
@@ -243,7 +424,7 @@ a:hover { text-decoration: underline; }
       <li>支持开始洗脑模式</li>
     </ul>
     <div class="img-placeholder">
-       <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601100529.png" alt="蚕食模式">               
+       <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601163959.png" alt="蚕食模式"> 
     </div>
 
     <h2 id="list">列表浏览</h2>
@@ -257,7 +438,7 @@ a:hover { text-decoration: underline; }
       <li>支持开始洗脑模式</li>
     </ul>
     <div class="img-placeholder">
-      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601100609.png" alt="列表模式">  
+      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601163716.png" alt="列表模式">  
     </div>
     <h2 id="quiz">考试模式</h2>
     <p>从已学单词中出题，播放单词发音后，需要同时选出对应的英文和中文。答对自动通过，答错加入错题本。</p>
@@ -269,7 +450,7 @@ a:hover { text-decoration: underline; }
       <li>错题会按间隔自动复现</li>
     </ul>
     <div class="img-placeholder">
-      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601103254.png" alt="考试模式"> 
+      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601163820.png" alt="考试模式">
       
     </div>
 
@@ -284,14 +465,14 @@ a:hover { text-decoration: underline; }
     <h2 id="learned">已学习</h2>
     <p>已学习页面展示当前词书中所有已查看过的单词列表，可按学习次数、通过状态和错误次数及排序。</p>
     <div class="img-placeholder">
-      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601103321.png" alt="已学习">       
+      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601163840.png" alt="已学习">    
     </div>
     
 
     <h2 id="stats">统计</h2>
     <p>统计页面展示当前词书的学习进度，包括已学数量、已通过数量、累计学习次数等数据的可视化图表。</p>
     <div class="img-placeholder">
-      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601103505.png" alt="统计"> 
+      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601163858.png" alt="统计"> 
       
     </div>
 
@@ -324,8 +505,19 @@ a:hover { text-decoration: underline; }
       <li>清空学习记录：重置当前词书进度（不可恢复）</li>
     </ul>
     <div class="img-placeholder">
-      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601103535.png" alt="设置面板"> 
+      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601163919.png" alt="设置面板">
       
+    </div>
+
+    <div class="support-card">
+      <div class="support-card-title">💖 支持开源项目</div>
+      <div class="support-card-desc">如果词环对你有帮助，欢迎在 GitHub 上给我们一个 Star，这是对我们最大的鼓励！</div>
+      <a href="https://github.com/yezihack/lexiloop" target="_blank" class="support-card-btn">
+        <svg class="github-icon" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        ⭐ Star on GitHub
+      </a>
     </div>
 
     <p style="margin-top:48px; font-size:13px; color:var(--text-3)">

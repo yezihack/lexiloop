@@ -13,7 +13,7 @@ const defaultGlobal = {
   autoSpeak: true,
   brainwash: false,
   cardDisplay: 'both',   // 'both' | 'en' | 'zh'
-  autoNext: false,
+  autoNext: true,
   speakMode: 'en',       // 'en' | 'enzh'
   zhReadAll: false,
   listDisplay: 'both',

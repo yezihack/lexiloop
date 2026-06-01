@@ -137,6 +137,19 @@ body {
 }
 .study-meta .progress-num { font-variant-numeric: tabular-nums; }
 .study-meta .seen-count { color: var(--accent); }
+.card-progress-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.card-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
+}
 .card-display-sel {
   font-size: 12px; padding: 3px 8px; border-radius: 6px;
   border: 1px solid var(--border); background: var(--bg-card);
@@ -361,6 +374,43 @@ body {
 .nibble-bar {
   display: flex; align-items: center; gap: 12px;
   margin-bottom: 16px; flex-wrap: wrap;
+}
+.nibble-presets {
+  display: flex;
+  gap: 4px;
+}
+.preset-btn {
+  padding: 4px 10px;
+  font-size: 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-card);
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all .15s;
+  font-variant-numeric: tabular-nums;
+}
+.preset-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.preset-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+.nibble-progress-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.nibble-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
 }
 .nibble-stat { font-size: 13px; color: var(--text-2); flex: 1; }
 .nibble-stat b { color: var(--accent); font-weight: 600; }

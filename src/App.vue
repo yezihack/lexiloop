@@ -11,6 +11,7 @@ const store = useStore();
 const showSettings = ref(false);
 const showBackToTop = ref(false);
 const year = new Date().getFullYear();
+const baseUrl = import.meta.env.BASE_URL;
 
 watchEffect(() => {
   const t = store.theme;
@@ -93,7 +94,7 @@ function back() {
         <option value="en">纯英语</option>
         <option value="enzh">英语+中文</option>
       </select>
-      <a class="icon-btn" href="/help.html" title="使用说明" target="_blank">?</a>
+      <a class="icon-btn" :href="`${baseUrl}help.html`" title="使用说明" target="_blank">?</a>
       <button class="icon-btn" @click="showSettings = true" title="设置">⚙</button>
     </div>
 

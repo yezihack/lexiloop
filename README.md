@@ -1,4 +1,4 @@
-# 词环.背单词
+# <img src="public/favicon.svg" width="32" height="32" align="center" /> 词环.背单词
 
 一款轻量、离线可用的英语单词循环记忆工具
 
