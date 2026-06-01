@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>使用说明 - 词环 LexiLoop</title>
+<style>
+:root {
+  --accent: #3b3aa6;
+  --accent-light: #3ec8b3;
+  --bg: #f8f9fa;
+  --bg-card: #fff;
+  --text: #1a1a2e;
+  --text-2: #555;
+  --text-3: #888;
+  --border: #e2e8f0;
+  --radius: 10px;
+  --nav-w: 220px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1a1a2e;
+    --bg-card: #23234a;
+    --text: #e8e8f0;
+    --text-2: #aaa;
+    --text-3: #777;
+    --border: #333;
+  }
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* 左侧导航 */
+.sidebar {
+  width: var(--nav-w);
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  background: var(--bg-card);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  overflow-y: auto;
+}
+.sidebar .logo {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.sidebar .slogan {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-bottom: 24px;
+}
+.sidebar nav a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--text-2);
+  transition: background .15s;
+}
+.sidebar nav a:hover {
+  background: var(--bg);
+  color: var(--text);
+  text-decoration: none;
+}
+.sidebar nav a.active {
+  background: var(--accent);
+  color: #fff;
+}
+.sidebar .back-link {
+  display: block;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+}
+
+/* 右侧内容 */
+.content {
+  margin-left: var(--nav-w);
+  flex: 1;
+  padding: 48px 40px 80px;
+  max-width: 800px;
+}
+.content h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.content .subtitle {
+  font-size: 15px;
+  color: var(--text-3);
+  margin-bottom: 40px;
+}
+.content h2 {
+  font-size: 20px;
+  margin-top: 48px;
+  margin-bottom: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.content h2:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+.content h3 {
+  font-size: 16px;
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+.content p { margin-bottom: 12px; font-size: 15px; color: var(--text-2); }
+.content ul { padding-left: 20px; margin-bottom: 12px; }
+.content li { font-size: 14px; color: var(--text-2); margin-bottom: 6px; }
+
+.img-placeholder {
+  width: 100%;
+  background: var(--bg);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-3);
+  font-size: 13px;
+  margin: 16px 0 24px;
+  overflow: hidden;
+  min-height: 100px;
+}
+.img-placeholder img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.version-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* 移动端 */
+@media (max-width: 768px) {
+  .sidebar {
+    position: static;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 16px;
+  }
+  .sidebar nav { display: flex; flex-wrap: wrap; gap: 4px; }
+  .sidebar nav a { padding: 6px 10px; font-size: 13px; }
+  .layout { flex-direction: column; }
+  .content { margin-left: 0; padding: 24px 16px 60px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="logo">词环 LexiLoop <span class="version-badge">v1.0.0</span></div>
+    <div class="slogan">循环背单词，轻盈不打扰</div>
+    <nav>
+      <a href="#intro">网站介绍</a>
+      <a href="#features">功能特色</a>
+      <a href="#card">卡片学习</a>
+      <a href="#nibble">蚕食模式</a>
+      <a href="#list">列表浏览</a>
+      <a href="#quiz">考试模式</a>
+      <a href="#mistakes">错题本</a>
+      <a href="#learned">已学习</a>
+      <a href="#stats">统计</a>
+      <a href="#toolbar">顶部工具栏</a>
+      <a href="#settings">设置</a>
+    </nav>
+    <a class="back-link" href="/">← 返回词环</a>
+  </aside>
+
+  <main class="content">
+    <h1 id="intro">词环 LexiLoop</h1>
+    <p class="subtitle">一款轻量、离线可用的英语单词循环记忆工具</p>
+
+    <p>词环是一个纯前端单词学习应用，无需注册、无需联网（首次加载后），数据保存在浏览器本地。它通过多种学习模式帮助你高效记忆英语词汇。</p>
+
+    <div class="img-placeholder">
+      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601093432.png" alt="首页显示">        
+    </div>
+    
+    
+
+    <h2 id="features">功能特色</h2>
+    <ul>
+      <li>多词书支持，按难度分级</li>
+      <li>卡片翻转学习，支持英美发音</li>
+      <li>发音支持在线或离线、自动识别</li>
+      <li>记不住怎么办：洗脑模式</li>
+      <li>蚕食模式：卡片趣味消消乐</li>
+      <li>列表模式：自动发音、自动背诵</li>
+      <li>考试模式：听音选词，检验记忆</li>
+      <li>错题本：自动收集错题，间隔复现</li>
+      <li>学习统计：可视化进度追踪</li>
+      <li>深色/浅色主题，跟随系统</li>
+      <li>数据本地存储，隐私安全</li>
+    </ul>
+
+    <h2 id="card">卡片学习</h2>
+    <p>卡片模式是最基础的学习方式。每次展示一个单词，点击卡片翻转查看中文释义。支持自动发音，可切换美音/英音。</p>
+    <ul>
+      <li>点击卡片翻转查看释义</li>
+      <li>点击 🔊 按钮重听发音</li>
+      <li>左右滑动或点击箭头切换单词</li>
+      <li>听完读音标记为"已学"</li>
+      <li>支持开始洗脑模式</li>
+    </ul>
+    <div class="img-placeholder">
+      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601094041.png" alt="卡片模式">        
+    </div>
+
+    <h2 id="nibble">蚕食模式</h2>
+    <p>蚕食模式类似消消乐，点击某单词，会自动发音，当前卡片就如何蚕一样被吃掉了，相当于你已学习过这个单词了。适合休闲、无聊时，或通勤等场景。每消除一批、会自动加载下一批、至到学完为止。</p>
+    <ul>
+      <li>点击某卡片单词</li>
+      <li>可在设置中调整蚕食速度（卡片消失延时时间）</li>
+      <li>支持"纯英语"或"英语+中文"朗读模式</li>
+      <li>可设置一次加载多少个卡片</li>
+      <li>支持开始洗脑模式</li>
+    </ul>
+    <div class="img-placeholder">
+       <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601100529.png" alt="蚕食模式">               
+    </div>
+
+    <h2 id="list">列表浏览</h2>
+    <p>列表模式以表格形式展示当前词书所有单词，方便快速背诵和浏览。</p>
+    <ul>
+      <li>点击开始即可以背诵</li>
+      <li>自动下一个单词</li>
+      <li>点击单词行可发音</li>
+      <li>已学单词会有标记</li>
+      <li>记录学习次数</li>
+      <li>支持开始洗脑模式</li>
+    </ul>
+    <div class="img-placeholder">
+      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601100609.png" alt="列表模式">  
+    </div>
+    <h2 id="quiz">考试模式</h2>
+    <p>从已学单词中出题，播放单词发音后，需要同时选出对应的英文和中文。答对自动通过，答错加入错题本。</p>
+    <ul>
+      <li>考试必须先学习单词 3 个以上</li>
+      <li>听发音 → 左列选英文 → 右列选中文</li>
+      <li>两列都选对才算通过</li>
+      <li>首次通过会有 🎉 烟花效果</li>
+      <li>错题会按间隔自动复现</li>
+    </ul>
+    <div class="img-placeholder">
+      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601103254.png" alt="考试模式"> 
+      
+    </div>
+
+    <h2 id="mistakes">错题本</h2>
+    <p>考试中答错的单词会自动收入错题本。错题本默认收起，点击标题展开查看。系统会在后续考试中按间隔自动穿插错题，帮助巩固薄弱词汇。</p>
+    <ul>
+      <li>显示每个错词的错误次数和正确次数</li>
+      <li>错题会在考试中每隔 3~5 题自动复现</li>
+      <li>答对后逐步减少出现频率</li>
+    </ul>
+
+    <h2 id="learned">已学习</h2>
+    <p>已学习页面展示当前词书中所有已查看过的单词列表，可按学习次数、通过状态和错误次数及排序。</p>
+    <div class="img-placeholder">
+      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601103321.png" alt="已学习">       
+    </div>
+    
+
+    <h2 id="stats">统计</h2>
+    <p>统计页面展示当前词书的学习进度，包括已学数量、已通过数量、累计学习次数等数据的可视化图表。</p>
+    <div class="img-placeholder">
+      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601103505.png" alt="统计"> 
+      
+    </div>
+
+    <h2 id="toolbar">顶部工具栏</h2>
+    <p>进入词书学习后，顶部工具栏提供以下快捷功能：</p>
+
+    <h3>🔁 洗脑模式</h3>
+    <p>开启后，每个单词会连续朗读 3 次，适合需要反复强化听觉记忆的场景。</p>
+
+    <h3>朗读内容</h3>
+    <p>可选择"纯英语"或"英语+中文"两种朗读模式：</p>
+    <ul>
+      <li>纯英语：只朗读英文单词</li>
+      <li>英语+中文：先读英文，再读中文释义</li>
+    </ul>
+
+    <h3>顺序/随机</h3>
+    <p>顶部标签显示当前学习顺序，可在设置中切换顺序或随机模式。</p>
+
+    <h2 id="settings">设置</h2>
+    <p>点击右上角 ⚙ 齿轮图标打开设置面板：</p>
+    <ul>
+      <li>主题：跟随系统 / 浅色 / 深色</li>
+      <li>顺序：顺序学习 / 随机学习（可重置随机序列）</li>
+      <li>发音口音：美音 / 英音</li>
+      <li>语速：0.5x ~ 1.5x 可调</li>
+      <li>蚕食速度：自动播放间隔时间</li>
+      <li>自动发音：翻卡时是否自动朗读</li>
+      <li>中文朗读：读第一个意思 / 读所有意思</li>
+      <li>清空学习记录：重置当前词书进度（不可恢复）</li>
+    </ul>
+    <div class="img-placeholder">
+      <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601103535.png" alt="设置面板"> 
+      
+    </div>
+
+    <p style="margin-top:48px; font-size:13px; color:var(--text-3)">
+      词环 LexiLoop v1.0.0 ·
+      <a href="https://github.com/yezihack/lexiloop" target="_blank">GitHub</a>
+    </p>
+  </main>
+</div>
+
+<script>
+// 滚动高亮导航
+const links = document.querySelectorAll('.sidebar nav a');
+const sections = [];
+links.forEach(a => {
+  const id = a.getAttribute('href').slice(1);
+  const el = document.getElementById(id);
+  if (el) sections.push({ el, a });
+});
+function highlight() {
+  let current = sections[0];
+  for (const s of sections) {
+    if (s.el.getBoundingClientRect().top <= 80) current = s;
+  }
+  links.forEach(a => a.classList.remove('active'));
+  if (current) current.a.classList.add('active');
+}
+window.addEventListener('scroll', highlight, { passive: true });
+highlight();
+</script>
+</body>
+</html>
