@@ -6,6 +6,20 @@
 
 它通过多种学习模式帮助你高效记忆英语词汇。
 
+## 📥 下载使用
+
+### 🌐 在线版本
+
+访问：<https://yezihack.github.io/lexiloop/>
+
+### 💻 桌面版本
+
+支持 Windows、macOS、Linux 系统，前往 [Releases](https://github.com/yezihack/lexiloop/releases) 下载最新版本：
+
+- **Windows**: 下载 `.msi` 或 `.exe` 安装包
+- **macOS**: 下载 `.dmg` 文件（Apple Silicon 选择 aarch64，Intel 选择 x86_64）
+- **Linux**: 下载 `.AppImage` 或 `.deb` 文件
+
 ## 功能特性
 
 - **多种学习模式**：卡片、列表、蚕食、测验、统计
@@ -21,6 +35,23 @@
 
 
 ## 快速开始
+
+### 🖥️ 桌面版开发
+
+详细说明请查看 [TAURI_GUIDE.md](./TAURI_GUIDE.md)
+
+```bash
+# 安装依赖
+npm install
+
+# 启动 Tauri 开发模式
+npm run tauri:dev
+
+# 构建桌面应用
+npm run tauri:build
+```
+
+### 🌐 Web 版开发
 
 ### 安装依赖
 
