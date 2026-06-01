@@ -91,11 +91,11 @@ git push origin v1.0.0
 ### `src-tauri/tauri.conf.json`
 
 主要配置项：
-- `productName`: 应用名称
+- `productName`: 应用名称（使用纯英文 "LexiLoop" 以避免 WiX 工具的编码问题）
 - `version`: 应用版本（需与 package.json 保持一致）
 - `identifier`: 应用唯一标识符（macOS Bundle ID / Windows App ID）
 - `build.frontendDist`: 前端构建产物目录
-- `app.windows`: 窗口配置（大小、标题等）
+- `app.windows.title`: 窗口标题（可以使用中文，如 "词环 LexiLoop"）
 
 ### `vite.config.js`
 

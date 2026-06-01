@@ -84,6 +84,12 @@ const nowText = computed(() => {
     : `就绪：${it.w} · ${it.m}`;
 });
 
+const listProgress = computed(() => {
+  const total = orderedWords.value.length;
+  if (total === 0) return 0;
+  return ((store.progress.listIdx + 1) / total) * 100;
+});
+
 onBeforeUnmount(stop);
 </script>
 
@@ -99,6 +105,11 @@ onBeforeUnmount(stop);
     </select>
     <span class="list-now">{{ nowText }}</span>
   </div>
+
+  <div class="nibble-progress-bar">
+    <div class="nibble-progress-fill" :style="{ width: listProgress + '%' }"></div>
+  </div>
+
   <div class="word-list">
     <div
       v-for="(w, i) in orderedWords"

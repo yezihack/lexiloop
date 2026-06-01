@@ -13,6 +13,35 @@ const showBackToTop = ref(false);
 const year = new Date().getFullYear();
 const baseUrl = import.meta.env.BASE_URL;
 
+// 检测是否在 Tauri 环境 - 使用更可靠的方法
+const isTauri = ref(false);
+
+// 在 mounted 时检测 Tauri 环境
+onMounted(async () => {
+  // 检测 Tauri 环境
+  console.log('[DEBUG] Checking Tauri environment...');
+  console.log('[DEBUG] window.__TAURI__ at mount:', window.__TAURI__);
+  
+  try {
+    // 尝试导入 Tauri API，如果成功说明在 Tauri 环境中
+    const tauriApp = await import('@tauri-apps/api/app');
+    console.log('[DEBUG] Tauri API imported successfully:', tauriApp);
+    isTauri.value = true;
+    console.log('[DEBUG] Tauri environment detected');
+  } catch (e) {
+    console.log('[DEBUG] Failed to import Tauri API:', e);
+    isTauri.value = false;
+    console.log('[DEBUG] Web environment detected');
+  }
+  
+  window.addEventListener('scroll', onScroll, { passive: true });
+  await store.loadBooks();
+  // 恢复上次打开的书
+  if (store.view === 'study' && store.currentBook != null) {
+    await store.openBook(store.currentBook);
+  }
+});
+
 watchEffect(() => {
   const t = store.theme;
   if (t === 'light' || t === 'dark') {
@@ -30,7 +59,33 @@ function backToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+async function openHelp() {
+  console.log('[DEBUG] openHelp called');
+  console.log('[DEBUG] isTauri:', isTauri.value);
+  
+  if (isTauri.value) {
+    // Tauri 桌面应用：在当前窗口跳转
+    console.log('[DEBUG] Navigating to help page in current window');
+    window.location.href = '/help.html';
+  } else {
+    // Web 环境：新标签页打开
+    console.log('[DEBUG] Opening help in new browser tab');
+    window.open(`${baseUrl}help.html`, '_blank');
+  }
+}
+
 onMounted(async () => {
+  // 检测 Tauri 环境
+  try {
+    // 尝试导入 Tauri API，如果成功说明在 Tauri 环境中
+    await import('@tauri-apps/api/app');
+    isTauri.value = true;
+    console.log('[DEBUG] Tauri environment detected');
+  } catch (e) {
+    isTauri.value = false;
+    console.log('[DEBUG] Web environment detected');
+  }
+  
   window.addEventListener('scroll', onScroll, { passive: true });
   await store.loadBooks();
   // 恢复上次打开的书
@@ -94,7 +149,7 @@ function back() {
         <option value="en">纯英语</option>
         <option value="enzh">英语+中文</option>
       </select>
-      <a class="icon-btn" :href="`${baseUrl}help.html`" title="使用说明" target="_blank">?</a>
+      <button class="icon-btn" @click="openHelp" title="使用说明">?</button>
       <button class="icon-btn" @click="showSettings = true" title="设置">⚙</button>
     </div>
 

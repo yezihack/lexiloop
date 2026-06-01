@@ -68,12 +68,12 @@ git push origin v1.0.0
 每个 Release 会包含以下文件：
 
 ### Windows
-- `词环-LexiLoop_1.0.0_x64_en-US.msi` - MSI 安装包
-- `词环-LexiLoop_1.0.0_x64-setup.exe` - NSIS 安装包
+- `LexiLoop_1.0.0_x64_en-US.msi` - MSI 安装包
+- `LexiLoop_1.0.0_x64-setup.exe` - NSIS 安装包
 
 ### macOS
-- `词环-LexiLoop_aarch64.dmg` - Apple Silicon (M1/M2/M3)
-- `词环-LexiLoop_x64.dmg` - Intel 芯片
+- `LexiLoop_aarch64.dmg` - Apple Silicon (M1/M2/M3)
+- `LexiLoop_x64.dmg` - Intel 芯片
 
 ### Linux
 - `lexiloop_1.0.0_amd64.deb` - Debian/Ubuntu

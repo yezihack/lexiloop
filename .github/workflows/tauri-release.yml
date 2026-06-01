@@ -59,9 +59,9 @@ jobs:
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         with:
           tagName: ${{ github.ref_name }}
-          releaseName: '词环 LexiLoop ${{ github.ref_name }}'
+          releaseName: 'LexiLoop (词环) ${{ github.ref_name }}'
           releaseBody: |
-            ## 词环 LexiLoop ${{ github.ref_name }}
+            ## LexiLoop (词环) ${{ github.ref_name }}
             
             ### 下载说明
             - **Windows**: 下载 `.msi` 或 `.exe` 文件

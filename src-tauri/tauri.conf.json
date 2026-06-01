@@ -1,13 +1,13 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "词环 LexiLoop",
+  "productName": "LexiLoop",
   "version": "1.0.0",
   "identifier": "com.lexiloop.app",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:5173",
     "beforeDevCommand": "npm run dev",
-    "beforeBuildCommand": "npm run build"
+    "beforeBuildCommand": "npm run build:tauri"
   },
   "app": {
     "windows": [
@@ -38,4 +38,6 @@
     }
   }
 }
+
+
 
