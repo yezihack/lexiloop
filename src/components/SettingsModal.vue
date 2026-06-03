@@ -1,7 +1,7 @@
 <script setup>
 import { useStore } from '../store.js';
 
-const emit = defineEmits(['close']);
+const emit = defineEmits(['close', 'openSponsor']);
 const store = useStore();
 
 function setOrder(v) { store.setOrder(v); }
@@ -15,6 +15,10 @@ function onMaskClick(e) {
   if (e.target.classList.contains('modal-mask')) emit('close');
 }
 function onChange() { store.persist(); }
+function openSponsor() {
+  emit('close');
+  emit('openSponsor');
+}
 </script>
 
 <template>
@@ -70,6 +74,7 @@ function onChange() { store.persist(); }
       </div>
       <div class="modal-actions">
         <button v-if="store.currentBook != null" class="btn-text danger" @click="reset">清空学习记录</button>
+        <button class="btn-text sponsor" @click="openSponsor">💖 赞助支持</button>
         <button class="btn-text" @click="emit('close')">关闭</button>
       </div>
     </div>

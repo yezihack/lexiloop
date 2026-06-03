@@ -9,6 +9,7 @@ import { cancelSpeak } from './speak.js';
 
 const store = useStore();
 const showSettings = ref(false);
+const showSponsor = ref(false);
 const showBackToTop = ref(false);
 const year = new Date().getFullYear();
 const baseUrl = import.meta.env.BASE_URL;
@@ -156,7 +157,7 @@ function back() {
     <Shelf v-if="store.view === 'shelf'" />
     <Study v-else />
 
-    <SettingsModal v-if="showSettings" @close="showSettings = false" />
+    <SettingsModal v-if="showSettings" @close="showSettings = false" @openSponsor="showSponsor = true" />
 
     <button
       v-show="showBackToTop"
@@ -176,8 +177,25 @@ function back() {
         <a :href="config.github" target="_blank" rel="noopener" class="foot-link">
           ⭐ 在 GitHub 上点个 Star
         </a>
+        <span class="foot-dot">·</span>
+        <button class="foot-link foot-btn" @click="showSponsor = true">
+          💖 赞助支持
+        </button>
       </div>
       <div class="foot-tip">如果它帮到了你，给我点个 Star 是最大的鼓励 💌</div>
     </footer>
+  </div>
+
+  <!-- 赞助弹窗 -->
+  <div v-if="showSponsor" class="modal-mask" @click="e => e.target.classList.contains('modal-mask') && (showSponsor = false)">
+    <div class="sponsor-modal">
+      <h2>💖 赞助支持</h2>
+      <p class="sponsor-desc">如果《词环》对您有帮助，欢迎扫码赞助支持项目持续开发</p>
+      <div class="sponsor-qr">
+        <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/986f4a53805ff09259b076aaaef64a2c.jpg" alt="赞助二维码">
+      </div>
+      <p class="sponsor-thanks">您的支持是我们持续维护和改进的动力 ❤️</p>
+      <button class="btn-close" @click="showSponsor = false">关闭</button>
+    </div>
   </div>
 </template>

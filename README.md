@@ -141,20 +141,18 @@ git push origin v1.0.0
 
 Vue 3 · Pinia · Vite · Tauri · ECharts
 
-## 📋 更新日志
+## ❤️ 赞助支持
 
-### [1.0.0] - 2026-06-01
+如果词环对你有帮助，欢迎通过以下方式支持项目：
 
-**新增**
-- 桌面版支持（Windows、macOS、Linux）
-- 5 种学习模式（卡片、列表、蚕食、测验、统计）
-- 语音朗读（英音/美音）
-- 多词库支持和自定义词库
-- 主题切换和学习进度可视化
-
-**技术说明**
-- 桌面版使用 `LexiLoop` 作为产品名（避免 WiX 中文编码问题）
-- 窗口标题显示 `词环 LexiLoop`（保留中文）
+<details>
+<summary>📦 <b>赞助二维码</b></summary>
+<div align="center">
+  <img src="https://cdn.jsdelivr.net/gh/yezihack/assets/b/986f4a53805ff09259b076aaaef64a2c.jpg" alt="赞助二维码" width="300">
+  <p><i>扫码赞助，支持开源</i></p>
+</div>
+你的支持是我们持续维护和改进的动力 ❤️
+</details>
 
 ## 📄 许可证
 
