@@ -1,6 +1,6 @@
 # <img src="public/favicon.svg" width="32" height="32" align="center" /> 词环 LexiLoop
 
-一款轻量、离线可用的英语单词循环记忆工具（联网则仿真人语音）。纯前端应用，无需注册、无需联网（首次加载后），数据保存在浏览器本地。
+一款免费、无广、轻量、离线可用的英语单词循环记忆工具（联网则仿真人语音）。Web+桌面双端，无需注册、无需联网（首次加载后），数据保存在浏览器本地。
 
 ![20260601155903](https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601155903.png)
 
