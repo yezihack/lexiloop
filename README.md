@@ -1,89 +1,55 @@
-# <img src="public/favicon.svg" width="32" height="32" align="center" /> 词环.背单词
+# <img src="public/favicon.svg" width="32" height="32" align="center" /> 词环 LexiLoop
 
-一款轻量、离线可用的英语单词循环记忆工具
-
-词环是一个纯前端单词学习应用，无需注册、无需联网（首次加载后），数据保存在浏览器本地。
-
-它通过多种学习模式帮助你高效记忆英语词汇。
-
-## 📥 下载使用
-
-### 🌐 在线版本
-
-访问：<https://yezihack.github.io/lexiloop/>
-
-### 💻 桌面版本
-
-支持 Windows、macOS、Linux 系统，前往 [Releases](https://github.com/yezihack/lexiloop/releases) 下载最新版本：
-
-- **Windows**: 下载 `.msi` 或 `.exe` 安装包
-- **macOS**: 下载 `.dmg` 文件（Apple Silicon 选择 aarch64，Intel 选择 x86_64）
-- **Linux**: 下载 `.AppImage` 或 `.deb` 文件
-
-## 功能特性
-
-- **多种学习模式**：卡片、列表、蚕食、测验、统计
-- **学习进度追踪**：自动记录已学单词和熟练度
-- **扩展词库支持**：可自定义添加词库
-- **语音朗读**：支持单词发音
-- **数据持久化**：学习进度本地保存
+一款轻量、离线可用的英语单词循环记忆工具（联网则仿真人语音）。纯前端应用，无需注册、无需联网（首次加载后），数据保存在浏览器本地。
 
 ![20260601155903](https://cdn.jsdelivr.net/gh/yezihack/assets/b/20260601155903.png)
 
-1. 其中蚕食参考: <https://github.com/KyleBing/vocabulary>
-2. 词库来源：<https://github.com/KyleBing/english-vocabulary>
+## 📥 使用
 
+**在线版**：<https://yezihack.github.io/lexiloop/>
 
-## 快速开始
+**桌面版**：前往 [Releases](https://github.com/yezihack/lexiloop/releases) 下载
+- Windows: `.msi` 或 `.exe`
+- macOS: `.dmg` (Apple Silicon 选 aarch64，Intel 选 x86_64)
+- Linux: `.AppImage` 或 `.deb`
 
-### 🖥️ 桌面版开发
+## ✨ 功能特性
 
-详细说明请查看 [TAURI_GUIDE.md](./TAURI_GUIDE.md)
+- **5 种学习模式**：卡片翻转、列表浏览、蚕食（消消乐）、测验考试、统计分析
+- **进度追踪**：自动记录已学单词和熟练度，错题本自动收集
+- **扩展词库**：支持自定义词库，可按需添加
+- **语音朗读**：英音/美音切换，在线支持真人语音。
+- **主题切换**：浅色/深色模式
+- **离线可用**：数据本地存储，无需联网
 
-```bash
-# 安装依赖
-npm install
+> 蚕食模式参考：<https://github.com/KyleBing/vocabulary>  
+> 词库来源：<https://github.com/KyleBing/english-vocabulary>
 
-# 启动 Tauri 开发模式
-npm run tauri:dev
-
-# 构建桌面应用
-npm run tauri:build
-```
-
-### 🌐 Web 版开发
+## 🚀 快速开始
 
 ### 安装依赖
-
 ```bash
 npm install
 ```
 
-### 开发模式
-
+### Web 版开发
 ```bash
-npm run dev
+npm run dev          # 开发模式（http://localhost:5173）
+npm run build        # 构建生产版本
+npm run preview      # 预览构建结果
 ```
 
-### 构建生产版本
-
+### 桌面版开发
 ```bash
-npm run build
+npm run tauri:dev    # 启动桌面版开发
+npm run tauri:build  # 构建桌面应用（产物在 src-tauri/target/release/bundle/）
 ```
 
-### 预览构建结果
+## 📚 自定义词库
 
-```bash
-npm run preview
-```
+### 1. 创建词库文件
 
-## 如何新增扩展词库
-
-扩展词库存放在 `extra/` 目录下，通过 `extra/index.json` 配置文件管理。
-
-### 步骤 1：创建词库 JSON 文件
-
-在 `extra/` 目录下创建新的 JSON 文件，例如 `my_words.json`：
+在 `extra/` 目录创建 JSON 文件，如 `my_words.json`：
 
 ```json
 [
@@ -94,39 +60,18 @@ npm run preview
     "us": "həˈloʊ",
     "m": "interj. 你好；喂",
     "f": 0
-  },
-  {
-    "id": 200001,
-    "w": "world",
-    "uk": "wɜːld",
-    "us": "wɜːrld",
-    "m": "n. 世界；地球",
-    "f": 0
   }
 ]
 ```
 
-**字段说明：**
+**字段说明**：`id` 唯一标识 | `w` 单词 | `uk/us` 音标 | `m` 释义 | `f` 熟练度
 
-- `id`：单词唯一标识（建议使用不重复的数字）
-- `w`：单词拼写
-- `uk`：英式音标（可选）
-- `us`：美式音标（可选）
-- `m`：中文释义
-- `f`：熟练度标记（初始为 0）
+### 2. 注册词库
 
-### 步骤 2：注册词库到索引文件
-
-编辑 `extra/index.json`，添加新词库配置：
+编辑 `extra/index.json`：
 
 ```json
 [
-  {
-    "bookid": 7,
-    "bookname": "基础英语 850 词（带音标）",
-    "file": "u850_phonetics.json",
-    "priority": 100
-  },
   {
     "bookid": 8,
     "bookname": "我的自定义词库",
@@ -136,41 +81,81 @@ npm run preview
 ]
 ```
 
-**字段说明：**
+### 3. 刷新应用
 
-- `bookid`：词库唯一 ID（不要与现有 ID 重复）
-- `bookname`：词库显示名称
-- `file`：词库文件名（相对于 `extra/` 目录）
-- `priority`：优先级（数字越大越靠前）
+重启应用，新词库出现在书架中。
 
-### 步骤 3：重启应用
+## 📦 发布新版本
 
-保存文件后刷新页面，新词库将出现在书架中。
+### 自动发布（推荐）
 
-## 项目结构
+```powershell
+# Windows
+.\scripts\release.ps1 -Version "1.0.0"
+```
+
+```bash
+# macOS/Linux
+./scripts/release.sh 1.0.0
+```
+
+脚本会自动：更新版本号 → 提交更改 → 创建 tag → 推送并触发 GitHub Actions
+
+### 手动发布
+
+```bash
+# 1. 更新版本号：package.json 和 src-tauri/tauri.conf.json
+# 2. 更新 CHANGELOG.md
+
+# 3. 提交并打 tag
+git add .
+git commit -m "chore: bump version to 1.0.0"
+git tag -a v1.0.0 -m "Release v1.0.0"
+
+# 4. 推送
+git push origin main
+git push origin v1.0.0
+```
+
+推送 tag 后，GitHub Actions 会自动构建所有平台（约 15-30 分钟）并创建 Release。
+
+## 📂 项目结构
 
 ```
-.
-├── extra/                  # 扩展词库目录
-│   ├── index.json         # 词库索引配置
-│   └── *.json             # 词库数据文件
-├── public/
-│   └── data/              # 内置词库（书籍 1-7）
+├── extra/                  # 扩展词库
+│   ├── index.json         # 词库索引
+│   └── *.json             # 词库数据
+├── public/data/           # 内置词库（书籍 1-7）
 ├── src/
 │   ├── components/        # Vue 组件
-│   ├── store.js          # 状态管理
+│   ├── store.js          # Pinia 状态管理
 │   └── main.js           # 应用入口
+├── src-tauri/             # Tauri 桌面版配置
 └── scripts/
-    └── build-data.mjs    # 数据构建脚本
+    ├── build-data.mjs    # 数据构建脚本
+    ├── release.ps1       # Windows 发布脚本
+    └── release.sh        # macOS/Linux 发布脚本
 ```
 
-## 技术栈
+## 🛠️ 技术栈
 
-- Vue 3
-- Pinia（状态管理）
-- Vite（构建工具）
-- ECharts（数据可视化）
+Vue 3 · Pinia · Vite · Tauri · ECharts
 
-## 许可证
+## 📋 更新日志
 
-见 LICENSE 文件
+### [1.0.0] - 2026-06-01
+
+**新增**
+- 桌面版支持（Windows、macOS、Linux）
+- 5 种学习模式（卡片、列表、蚕食、测验、统计）
+- 语音朗读（英音/美音）
+- 多词库支持和自定义词库
+- 主题切换和学习进度可视化
+
+**技术说明**
+- 桌面版使用 `LexiLoop` 作为产品名（避免 WiX 中文编码问题）
+- 窗口标题显示 `词环 LexiLoop`（保留中文）
+
+## 📄 许可证
+
+见 [LICENSE](./LICENSE) 文件
