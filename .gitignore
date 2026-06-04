@@ -7,6 +7,7 @@ node_modules/
 
 # Build output
 dist/
+dist-local/
 dist-ssr/
 *.local
 
@@ -31,3 +32,4 @@ Thumbs.db
 *.temp
 .cache/
 PROMOTION.md
+TODO.md

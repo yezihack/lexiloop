@@ -34,10 +34,30 @@ npm install
 
 ### Web 版开发
 ```bash
-npm run dev          # 开发模式（http://localhost:5173）
-npm run build        # 构建生产版本
-npm run preview      # 预览构建结果
+npm run dev          # 开发模式（http://localhost:7003)
+npm run build        # 构建生产版本（用于 GitHub Pages，包含 /lexiloop/ 前缀）
+npm run build:local  # 构建本地预览版（根路径，无前缀）
+npm run preview      # 预览生产版本
+npm run preview:local # 预览本地版本
 ```
+
+### 本地预览说明
+
+如果你想在本地查看构建后的效果，使用以下命令：
+
+```bash
+# 构建本地预览版（无路径前缀）
+npm run build:local
+
+# 启动本地服务器预览
+npm run preview:local
+
+# 浏览器访问 http://localhost:3000
+```
+
+**注意**：
+- `npm run build` - 生成 `dist/` 目录，用于 GitHub Pages（包含 `/lexiloop/` 路径）
+- `npm run build:local` - 生成 `dist-local/` 目录，用于本地预览（根路径 `/`）
 
 ### 桌面版开发
 ```bash

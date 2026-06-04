@@ -555,6 +555,53 @@ function highlight() {
 }
 window.addEventListener('scroll', highlight, { passive: true });
 highlight();
+
+// ── 网站统计 ──────────────────────────────────────────
+// 在此处填写统计 ID，留空则不加载对应统计
+// 与 src/config.js 中的 analytics 配置保持同步
+const ANALYTICS = {
+  baiduId: '',   // 百度统计 token，例：'abc123def456...'
+  googleId: '',  // Google Analytics 4，例：'G-XXXXXXXXXX'
+  laId: '',      // 51.la 统计 ID
+  cnzzId: '',    // CNZZ/友盟统计 ID
+};
+
+(function() {
+  function injectScript(src) {
+    const s = document.createElement('script');
+    s.src = src; s.async = true;
+    document.head.appendChild(s);
+  }
+
+  // 百度统计
+  if (ANALYTICS.baiduId) {
+    var _hmt = _hmt || [];
+    injectScript('https://hm.baidu.com/hm.js?' + ANALYTICS.baiduId);
+  }
+
+  // Google Analytics 4
+  if (ANALYTICS.googleId) {
+    injectScript('https://www.googletagmanager.com/gtag/js?id=' + ANALYTICS.googleId);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', ANALYTICS.googleId);
+  }
+
+  // 51.la 统计
+  if (ANALYTICS.laId) {
+    const s = document.createElement('script');
+    s.src = 'https://sdk.51.la/js-sdk-pro.min.js';
+    s.charset = 'UTF-8'; s.async = true;
+    s.onload = () => LA.init({ id: ANALYTICS.laId, ck: ANALYTICS.laId });
+    document.head.appendChild(s);
+  }
+
+  // CNZZ/友盟统计
+  if (ANALYTICS.cnzzId) {
+    injectScript('https://s9.cnzz.com/z_stat.php?id=' + ANALYTICS.cnzzId + '&web_id=' + ANALYTICS.cnzzId);
+  }
+})();
 </script>
 </body>
 </html>

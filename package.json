@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:local": "vite build --mode preview --outDir dist-local && node scripts/create-local-readme.mjs",
     "build:tauri": "vite build --mode tauri",
     "preview": "vite preview",
+    "preview:local": "serve dist-local -s",
     "build:data": "node scripts/build-data.mjs",
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
